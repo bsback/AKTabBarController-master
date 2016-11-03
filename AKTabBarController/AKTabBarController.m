@@ -370,6 +370,10 @@ typedef enum {
     [self.selectedViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return self.selectedViewController.supportedInterfaceOrientations;
+}
+
 #pragma mark - ViewController Life cycle
 
 - (void)viewWillAppear:(BOOL)animated
