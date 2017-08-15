@@ -78,6 +78,27 @@ typedef enum {
     return self;
 }
 
+-(id)initWithTabBarHeight:(NSUInteger)height customTabView:(UIView *)v{
+    self = [super init];
+    if (!self) return nil;
+    
+    tabBarHeight = height;
+    self.customTabView = v;
+    
+    // default settings
+    _iconShadowOffset = CGSizeMake(0, -1);
+    
+    return self;
+}
+
+-(void)setCustomTabView:(UIView *)customTabView{
+    _customTabView = customTabView;
+    if (tabBar) {
+        _customTabView.frame = tabBar.bounds;
+        [tabBar addSubview:_customTabView];
+    }
+}
+
 - (void)loadView
 {
     [super loadView];
@@ -94,7 +115,12 @@ typedef enum {
     tabBarView.tabBar = tabBar;
     tabBarView.contentView = _selectedViewController.view;
     [[self navigationItem] setTitle:[_selectedViewController title]];
-    [self loadTabs];
+//    [self loadTabs];
+    
+    if (self.customTabView) {
+        _customTabView.frame = tabBar.bounds;
+        [tabBar addSubview:_customTabView];
+    }
 }
 
 - (void)loadTabs
