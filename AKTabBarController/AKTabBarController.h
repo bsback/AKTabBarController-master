@@ -26,6 +26,7 @@
 
 @interface AKTabBarController : UIViewController <AKTabBarDelegate, UINavigationControllerDelegate>
 
+@property (nonatomic, assign) UIView *customTabView;
 // View Controllers handled by the tab bar controller.
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
@@ -97,6 +98,7 @@
 
 // Initialization with a specific height.
 - (id)initWithTabBarHeight:(NSUInteger)height;
+- (id)initWithTabBarHeight:(NSUInteger)height customTabView:(UIView *)v;
 
 // Hide / Show Methods
 - (void)showTabBarAnimated:(BOOL)animated;
